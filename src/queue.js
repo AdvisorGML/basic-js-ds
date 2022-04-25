@@ -25,7 +25,7 @@ class Queue {
     // remove line with error and write your code here
 let current = this.head;
 while(current){
-  console.log(current);
+  return current;
   current=current.next;
 }
 
