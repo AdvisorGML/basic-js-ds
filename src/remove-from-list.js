@@ -22,82 +22,53 @@ const { ListNode } = require('../extensions/list-node.js');
  *   }
  * }
  */
- class List {
 
-  constructor() {
-    this.head = null;
-    this.length = 0;
+function removeKFromList(list, k) {
+  // console.log('INPUT:');
+  // console.log(list);
+  let head = list;
+  if (!head) {
+    console.log('NO ELEMENT');
+    return;
   }
-
-  remove(k) {
-    let current = this.head;
-    let index=0;
-    while(current){
-    this.removeEl(this.IndexOf(k));
-    current=current.next
-    }
-  }
-
-  IndexOf(el) {
-    let current = this.head;
-    let index = 0;
-
-    while (current) {
-      if (current.value === el) {
-        return index;
-      }
-      current = current.next;
-      index++;
-    }
-    return -1;
-  }
-  removeEl(pos) {
-    if (pos < 0 || pos >= this.length) {
-      console.log(this.head);
-      return this.head;}
-
-    let current = this.head;
-    if (pos === 0) {
-      this.head = current.next;
-    } else {
-      let prev = null;
-      let index = 0;
-      while (index < pos) {
-        prev = current;
-        current = current.next;
-        index++;
-      }
-      prev.next = current.next;
-    }
+  if (head && head.value === k) {
+    head = head.next;
     this.length--;
-    return pos;
   }
-/////////////////////////////////////////////
-enqueue(value) {
-  if (this.length === 0) {
-    this.head = new ListNode(value)
-  } else {
-    let current = this.head;
+  current = head;
+  if (current != null) {
     while (current.next) {
-      current = current.next;
+      if (current.next.value === k) {
+        current.next = current.next.next;
+        this.length--;
+      } else {
+        current = current.next;
+      }
     }
-    current.next = new ListNode(value)
   }
-  this.length++;
+  // console.log('RETURN: ');
+  // console.log(head);
+  return head;
 }
 
-////////////////////////////////////////////
+// function convertArrayToList(arr) {
+//   return arr.reverse().reduce((acc, cur) => {
+//     if (acc) {
+//       const node = new ListNode(cur);
+//       node.next = acc;
+//       return node;
+//     }
+
+//     return new ListNode(cur);
+//   }, null);
+// }
+// const initial = convertArrayToList([3, 1, 2, 3, 4, 5]);
+// const expected = convertArrayToList([1, 2, 4, 5]);
+// removeKFromList(initial, 3);
 
 
-}
 
 
- const list = new List();
-
-function removeKFromList(l, k) {
-console.log(l);
-  list.remove(k);
-}
 
 
 
@@ -106,12 +77,15 @@ module.exports = {
 };
 
 
-[3, 1, 2, 3, 4, 5]
+// [3, 1, 2, 3, 4, 5]
 
-list.enqueue(3);
-list.enqueue(1);
-list.enqueue(2);
-list.enqueue(3);
-list.enqueue(4);
-list.enqueue(5);
-removeKFromList(1,3);
+// list.enqueue(3);
+// list.enqueue(1);
+// list.enqueue(2);
+// list.enqueue(3);
+// list.enqueue(4);
+//  list.enqueue(5);
+//  console.log(list)
+//  removeKFromList(list, 3);
+// console.log(k);
+// console.log(l);
