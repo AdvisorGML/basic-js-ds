@@ -30,15 +30,22 @@ class BinarySearchTree {
       }
       return current;
     }
-    
+
   }
 
   has(data) {
-    throw new NotImplementedError('Not implemented');
+    // throw new NotImplementedError('Not implemented');
+    return (this.find(data) === null) ? false : true;
   }
 
   find(data) {
-    throw new NotImplementedError('Not implemented');
+    return search(this.tree, data);
+    function search(current, data) {
+      if (!current) return null;
+      if (current.data === data) return current;
+      return (data < current.data) ? search(current.left, data) : search(current.rigth, data);
+    }
+    // throw new NotImplementedError('Not implemented');
   }
 
   remove(data) {
@@ -60,7 +67,15 @@ module.exports = {
 
 // const tree = new BinarySearchTree();
 
-// tree.add(20);
-// tree.add(25);
-// tree.add(2);
-// console.log(tree);
+// tree.add(9);
+//       tree.add(14);
+//       tree.add(54);
+//       tree.add(2);
+//       tree.add(6);
+//       tree.add(8);
+//       tree.add(31);
+//       tree.add(1);
+//       console.log(tree.has(54));//, true);
+//       console.log(tree.has(8));//, true);
+//       console.log(tree.has(7));//, false);
+//       console.log(tree.has(4));//, false);
